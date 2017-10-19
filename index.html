@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="UTF-8">
+	<title>react test</title>
+</head>
+
+<body>
+	<div id="root-dom"></div>
+	<script>
+		require("babel-register")({plugins: "transform-react-jsx"});
+		
+		const ipcRenderer = require('electron').ipcRenderer;
+		const React = require("react");
+		const ReactDOM = require("react-dom");
+		const MyApp = require("./my-app");
+
+		const rootDOM = document.getElementById("root-dom");
+		ReactDOM.render(React.createElement(MyApp), rootDOM);
+		
+		ipcRenderer.on("render", (sender, state) => {
+			ReactDOM.render(React.createElement(MyApp, state), rootDOM);
+		});
+	</script>
+</body>
+
+</html>
