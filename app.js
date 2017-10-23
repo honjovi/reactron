@@ -2,6 +2,8 @@
 
 require('babel-register')({plugins: 'transform-react-jsx'});
 const React = require('react');
-const ReactDOM = require('react-dom');
-const rootDOM = document.getElementById('root-dom');
-ReactDOM.render(React.createElement('h1', null, 'Hello Reactron!'), rootDOM);
+const render = require('react-dom').render;
+const FormAppContainer = require('./FormAppContainer');
+
+// ReactDom
+render(React.createElement(FormAppContainer), document.getElementById('root-dom'));
